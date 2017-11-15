@@ -13,9 +13,13 @@ export class Count extends React.Component {
   }
 
   onput (key, value) {
-    if (key.startsWith(this.prefix) && !this.keys[key] && this.filter(({ key, value }))) {
-      this.keys[key] = true
-      this.setState({ count: this.state.count + 1 })
+    if (key.startsWith(this.prefix)) { 
+      if (!this.keys[key] && this.filter({ key, value })) {
+        this.keys[key] = true
+        this.setState({ count: this.state.count + 1 })
+      } else {
+        this.ondel(key)
+      }
     }
   }
   
