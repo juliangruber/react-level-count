@@ -42,7 +42,17 @@ $ npm install react-level-value
 
 ## API
 
-### `<Count db prefix />`
+### `<Count db prefix filter />`
+
+Use `filter` to pick what adds to the count, like so:
+
+```js
+<Count
+  db={db}
+  prefix="prefix"
+  filter={({ key, value }) => true}
+  />
+```
 
 ## License
 

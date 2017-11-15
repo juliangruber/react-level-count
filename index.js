@@ -1,18 +1,19 @@
 import React from 'react'
 
 export class Count extends React.Component {
-  constructor ({ db, prefix }) {
+  constructor ({ db, prefix, filter }) {
     super()
     this.state = { count: 0 }
     this.onput = this.onput.bind(this)
     this.ondel = this.ondel.bind(this)
     this.db = db
     this.prefix = prefix
+    this.filter = filter || (() => true)
     this.keys = {}
   }
 
-  onput (key) {
-    if (key.startsWith(this.prefix) && !this.keys[key]) {
+  onput (key, value) {
+    if (key.startsWith(this.prefix) && !this.keys[key] && this.filter(({ key, value }))) {
       this.keys[key] = true
       this.setState({ count: this.state.count + 1 })
     }
