@@ -28,17 +28,17 @@ export class Count extends React.Component {
   }
 
   componentDidMount () {
-    this.db.createReadStream({
+    this.props.db.createReadStream({
       start: this.props.prefix,
       end: `${this.props.prefix}~`
     }).on('data', ({ key }) => this.onput(key))
-    this.db.on('put', this.onput)
-    this.db.on('del', this.ondel)
+    this.props.db.on('put', this.onput)
+    this.props.db.on('del', this.ondel)
   }
 
   componentWillUnmount () {
-    this.db.removeListener('put', this.onput)
-    this.db.removeListener('del', this.ondel)
+    this.props.db.removeListener('put', this.onput)
+    this.props.db.removeListener('del', this.ondel)
   }
 
   render () {
