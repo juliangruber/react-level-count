@@ -16,7 +16,12 @@ class Example extends React.Component {
         <button onClick={ this.add }>Add a value!</button><br /><br />
         Or execute this snippet in the console:<br />
         <pre>db.put(`prefix${'{Date.now()}'}${'{Math.random()}'}`, '')</pre><br />
-        Live count: <strong><Count db={db} prefix="prefix" /></strong>
+        Live count:{' '}
+        <Count
+          db={db}
+          prefix="prefix"
+          render={val => <strong>{val}</strong>}
+        />
       </div>
     )
   }
