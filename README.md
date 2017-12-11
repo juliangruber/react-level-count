@@ -58,7 +58,6 @@ Use `render` for a custom render function:
 ```js
 <Count
   db={db}
-  prefix="prefix"
   render={count => <strong>{count}</strong>}
 />
 ```
