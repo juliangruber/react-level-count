@@ -10,13 +10,9 @@ export class Count extends React.Component {
   }
 
   onput (key, value) {
-    if (key.startsWith(this.props.prefix)) {
-      if (!this.keys[key] && this.props.filter({ key, value })) {
-        this.keys[key] = true
-        this.setState({ count: this.state.count + 1 })
-      } else {
-        this.ondel(key)
-      }
+    if (key.startsWith(this.props.prefix) && !this.keys[key] && this.props.filter({ key, value })) {
+      this.keys[key] = true
+      this.setState({ count: this.state.count + 1 })
     }
   }
 
