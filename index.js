@@ -13,7 +13,7 @@ export class Count extends React.Component {
     if (!key.startsWith(this.props.prefix)) return
     if (!this.keys[key] && this.props.filter({ key, value })) {
       this.keys[key] = true
-      this.setState({ count: this.state.count + 1 })
+      this.setState(state => { return { count: state.count + 1 } })
     } else if (this.keys[key] && !this.props.filter({ key, value })) {
       this.ondel(key)
     }
@@ -22,7 +22,7 @@ export class Count extends React.Component {
   ondel (key) {
     if (key.startsWith(this.props.prefix) && this.keys[key]) {
       delete this.keys[key]
-      this.setState({ count: this.state.count - 1 })
+      this.setState(state => { return { count: state.count - 1 } })
     }
   }
 
